@@ -1,0 +1,79 @@
+In bitfield mode (a0 = 0):
+  15: slow (1) / fast (0)
+  14: set busy (1 = start busy counter)
+  13: chip select 3 (active 0) = RELATIVE HIGH
+  12: chip select 2 (active 0) = RELATIVE HIGH
+  11: chip select 1 (active 0) = RELATIVE HIGH
+  10: dc = RELATIVE HIGH
+  9: mosi = RELATIVE HIGH
+  8: sck = RELATIVE HIGH
+  7: unused
+  6: unused
+  5: chip select 3 (active 0) = RELATIVE LOW
+  4: chip select 2 (active 0) = RELATIVE LOW
+  3: chip select 1 (active 0) = RELATIVE LOW
+  2: dc = RELATIVE LOW
+  1: mosi = RELATIVE LOW
+  0: sck = RELATIVE LOW
+
+  
+  Note that if both the set and the clear are present in one opcode, the clear will take precedence
+  
+In serializing mode (a0 = 1):
+  15: slow (1) / fast (0) - to be remembered
+  14: unused
+  13: unused
+  12: unused
+  11: unused
+  10: unused
+  9: unused
+  8: unused
+  7: mosi serialization bit 7 (happens first)
+  6: mosi serialization bit 6 (happens second)
+  5: mosi serialization bit 5 (happens third)
+  4: mosi serialization bit 4 (happens fourth)
+  3: mosi serialization bit 3 (happens fifth)
+  2: mosi serialization bit 2 (happens sixth)
+  1: mosi serialization bit 1 (happens seventh)
+  0: mosi serialization bit 0 (happens last)
+  
+  Note that the byte will be ordered (MSB first) 76543210 when it arrives in LCD/TFT - bit order is preserved
+  
+There are three states: clock high, clock low, set mosi. Really they're "clock phases"
+
+New Version:
+In bitfield mode (a0 = 0):
+  15: slow (1) / fast (0)
+  14: unused
+  13: chip select 3 (active 0) = RELATIVE HIGH
+  12: chip select 2 (active 0) = RELATIVE HIGH
+  11: chip select 1 (active 0) = RELATIVE HIGH
+  10: dc = RELATIVE HIGH
+  9: mosi = RELATIVE HIGH
+  8: sck = RELATIVE HIGH
+  7: unused
+  6: unused
+  5: chip select 3 (active 0) = RELATIVE LOW
+  4: chip select 2 (active 0) = RELATIVE LOW
+  3: chip select 1 (active 0) = RELATIVE LOW
+  2: dc = RELATIVE LOW
+  1: mosi = RELATIVE LOW
+  0: sck = RELATIVE LOW
+
+In serializing mode (a0 = 1):
+  15: slow (1) / fast (0) - to be remembered
+  14: unused
+  13: unused
+  12: unused
+  11: unused
+  10: unused
+  9: unused
+  8: unused
+  7: mosi serialization 7 (happens first)
+  6: mosi serialization 6 (happens second)
+  5: mosi serialization 5 (happens third)
+  4: mosi serialization 4 (happens fourth)
+  3: mosi serialization 3 (happens fifth)
+  2: mosi serialization 2 (happens sixth)
+  1: mosi serialization 1 (happens seventh)
+  0: mosi serialization 0 (happens last)
